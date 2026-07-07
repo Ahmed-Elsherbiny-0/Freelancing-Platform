@@ -1,0 +1,52 @@
+.lg-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 16px;
+  width: 100%;
+}
+@media (max-width: 767px) {
+  .lg-container {
+    max-width: 700px;
+    padding: 0 10px;
+  }
+}
+@media (max-width: 400px) {
+  .lg-container {
+    max-width: 400px;
+  }
+}
+@media (max-width: 200px) {
+  .lg-container {
+    max-width: 100px;
+  }
+}
+
+@media (min-width: 768px) {
+  .lg-container {
+    max-width: 1000;
+  }
+}
+.button-selected {
+  background-color: var(--theme-bg) !important;
+  stroke: var(--color-primary) !important;
+  opacity: 100%;
+}
+.button-selected span {
+  color: var(--color-primary) !important;
+}
+.button-selected p {
+  background-color: var(--color-primary) !important;
+}
+.button-selected svg {
+  stroke: var(--color-primary) !important;
+}
+.button-hover:hover {
+  background-color: var(--border-components);
+}
+.button-hover:hover svg {
+  stroke: var(--color-primary);
+}
+.button-hover:hover p {
+  background-color: var(--color-primary);
+  opacity: 100%;
+}

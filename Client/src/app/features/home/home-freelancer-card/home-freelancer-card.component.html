@@ -1,0 +1,65 @@
+<section class="text-[#fff] max-w-[220px] bg-[var(--secondary-color)] rounded-2xl overflow-hidden">
+  <div>
+    <img class="w-full" [src]="user()?.pictureUrl" />
+  </div>
+  <div>{{ user()?.id }}</div>
+  <div class="p-3">
+    <div class="user-info flex gap-3 mb-5">
+      <span
+        class="w-[36px] h-[36px] bg-[var(--main-icons)] rounded-xl flex justify-center items-center b"
+        ><svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+      </span>
+      <div class="flex flex-col gap-.5">
+        <p class="font-semibold tracking-wider text-xs">{{ user()?.fristName }}</p>
+        <p class="text-xs text-[var(--paragraph-secondary)]">{{ user()?.level }}</p>
+      </div>
+    </div>
+
+    <div class="flex gap-1.5 flex-col">
+      <p class="font-semibold tracking-wider text-xs">{{ user()?.title }}</p>
+      <p class="text-xs text-[var(--paragraph-secondary)]">{{ user()?.description }}</p>
+    </div>
+    <div class="h-[1px] bg-[#ffffff4b] w-full my-5"></div>
+    <div class="flex justify-between">
+      <p class="font-bold italic text-base">
+        {{ user()?.salary }} <span class="text-xl font-extrabold">$ </span
+        ><span class="text-xs">/ hr</span>
+      </p>
+      <div class="flex gap-1 items-center">
+        <span class="">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-clock opacity-60"
+            aria-hidden="true"
+          >
+            <path d="M12 6v6l4 2"></path>
+            <circle cx="12" cy="12" r="10"></circle>
+          </svg>
+        </span>
+        <p class="text-[10px] text-[var(--paragraph-secondary)]">{{ user()?.lastOnline }}</p>
+      </div>
+    </div>
+  </div>
+</section>

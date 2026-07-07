@@ -1,0 +1,165 @@
+<app-header />
+<section class="py-10 text-[var(--text-primary)]">
+  <div class="lg-container">
+    <div class="flex flex-col gap-7">
+      <div class="text-2xl text-center font-medium flex flex-col gap-2">
+        <h2>Browse Projects</h2>
+        <p class="text-[var(--paragraph-secondary)] text-sm">
+          Find the perfect project for your skills and start your journey now
+        </p>
+      </div>
+      <form (ngSubmit)="OnSearch()" class="flex gap-2 search-container">
+        <div
+          class="relative p-3 bg-[var(--secondary-color)] rounded-2xl border border-[var(--border-components)] w-full"
+        >
+          <input
+            type="text"
+            class="w-full outline-0 pl-7"
+            placeholder="Search for inspiring projects..."
+            [(ngModel)]="search"
+            name="text"
+          />
+          <button class="search-icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="m21 21-4.34-4.34"></path>
+              <circle cx="11" cy="11" r="8"></circle>
+            </svg>
+          </button>
+        </div>
+        <button
+          class="flex gap-1 p-3 rounded-2xl border border-[var(--border-components)] cursor-pointer transition-[.5s] hover:bg-[var(--secondary-color)] items-center justify-center"
+          [class.openDialogButton]="openDialog()"
+          (click)="OnOpenDialog()"
+        >
+          <p
+            class="text-[var(--paragraph-secondary)] font-semibold text-base"
+            [class.openDialogSvg]="openDialog()"
+          >
+            Filter
+          </p>
+          <span class="w-[24px] h-[24px]"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+              stroke="var(--color-primary)"
+              [class.openDialogSvg]="openDialog()"
+            >
+              <path d="M10 5H3"></path>
+              <path d="M12 19H3"></path>
+              <path d="M14 3v4"></path>
+              <path d="M16 17v4"></path>
+              <path d="M21 12h-9"></path>
+              <path d="M21 19h-5"></path>
+              <path d="M21 5h-7"></path>
+              <path d="M8 10v4"></path>
+              <path d="M8 12H3"></path>
+            </svg>
+          </span>
+        </button>
+      </form>
+      @if (openDialog()) {
+        <form
+          class="grid grid-cols-2 gap-4 mt-5 p-8 border border-[var(--border-components)] rounded-2xl dialog"
+          animate.enter="enter-animation"
+          animate.leave="leaving"
+        >
+          <div class="flex flex-col gap-2">
+            <p class="text-[13px] tracking-wider uppercase opacity-70 text-left ml-1">max Budget</p>
+            <div class="relative">
+              <input
+                class="w-full bg-[var(--secondary-color)] border border-[var(--border-components)] rounded-xl py-3.5 px-5 focus:outline-none focus:ring-4 focus:ring-primary/5 focus:border-primary/30 transition-all text-heading font-black font-cairo appearance-none shadow-xs cursor-pointer text-left undefined"
+                placeholder="max budget"
+                type="text"
+                inputmode="numeric"
+                [(ngModel)]="budgetText"
+                (ngModelChange)="onChangeBudget($event)"
+                name="budget"
+              />
+              <span
+                class="absolute right-5 top-1/2 -translate-y-1/2 text-primary transition-transform"
+                >$
+              </span>
+            </div>
+          </div>
+          <div class="flex flex-col gap-2">
+            <p class="text-[13px] tracking-wider uppercase opacity-70 text-left ml-1">Status</p>
+            <div class="relative">
+              <select
+                class="w-full bg-[var(--secondary-color)] border border-[var(--border-components)] rounded-xl py-3.5 px-7 focus:outline-none focus:ring-4 focus:ring-primary/5 focus:border-[var(--border-components)]/30 transition-all text-heading font-black font-cairo appearance-none shadow-xs cursor-pointer text-left undefined"
+                [(ngModel)]="statusOption"
+                (change)="onChangeStatus($event)"
+                name="status"
+              >
+                <option value="all" class="bg-bg font-bold font-cairo">All Cases</option>
+                <option value="pending" class="bg-bg font-bold font-cairo">Open</option>
+                <option value="closed" class="bg-bg font-bold font-cairo">Closed</option></select
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-chevron-down absolute right-5 top-1/2 -translate-y-1/2 text-primary pointer-events-none group-focus-within/field:rotate-180 transition-transform"
+                aria-hidden="true"
+              >
+                <path d="m6 9 6 6 6-6"></path>
+              </svg>
+            </div>
+          </div>
+        </form>
+      }
+      <div class="flex gap-4 justify-center items-center">
+        <div class="basis-[5%]"></div>
+        <div
+          class="border-[var(--border-components)] border-[1px] w-full basis-[75%] opacity-50"
+        ></div>
+        <p class="w-fit text-sm text-[12px]! justify-end">
+          <span class="text-[var(--color-primary)] font-bold mr-1 text-base">{{
+            jobService.jobsPage()?.count
+          }}</span>
+          Projects
+        </p>
+      </div>
+    </div>
+    <div class="grid grid-cols-3 gap-4 gap-y-7 mt-5 cards">
+      @for (item of jobs(); track $index) {
+        <app-job-card [job]="item" />
+      }
+    </div>
+
+    <div class="flex justify-center mt-7">
+      <p-paginator
+        (onPageChange)="onPageChange($event)"
+        [first]="first"
+        [rows]="rows"
+        [totalRecords]="jobService.jobsPage()?.count"
+        styleClass="pagiation"
+      />
+    </div>
+  </div>
+</section>
+
+<app-footer />

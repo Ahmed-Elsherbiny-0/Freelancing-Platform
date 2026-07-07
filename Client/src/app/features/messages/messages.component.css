@@ -1,0 +1,43 @@
+.search-icon {
+  position: absolute;
+  top: 50%;
+  right: 0px;
+  transform: translateY(-50%);
+  padding-right: 30px;
+}
+.scrolled::-webkit-scrollbar {
+  width: 1px !important;
+}
+.scrolled::-webkit-scrollbar-track {
+  background-color: var(#000) !important;
+}
+.scrolled::-webkit-scrollbar-thumb {
+  background: var(#fff) !important;
+  border-radius: 10px;
+}
+.scrolled::-webkit-scrollbar-thumb:hover {
+  opacity: 0.5;
+  background: var(--color-primary);
+  opacity: 0.8;
+}
+@media (max-width: 767px) {
+  .messages-container {
+    flex-basis: 100%;
+  }
+  .messages-chat {
+    display: none;
+  }
+}
+@media (min-width: 768px) {
+  .messages-chat {
+    flex-basis: calc(100% - 300px);
+  }
+  .messages-container {
+    flex-basis: 300px;
+  }
+}
+.messages-container {
+  border-left: 1px;
+  border-color: var(--border-components);
+  border-style: solid;
+}

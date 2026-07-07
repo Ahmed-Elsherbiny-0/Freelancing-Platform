@@ -1,0 +1,596 @@
+<app-header />
+<section appScrollAnimate class="section-img flex justify-center items-center relative">
+  <div class="overlay z-[1]"></div>
+  <div class="flex items-center justify-center z-[1] h-full min-h-[200vh]">
+    <!-- main header -->
+    <div class="text-white relative lg-container z-[4]">
+      <div class="md-container flex items-center flex-col">
+        <div class="flex flex-col gap-12 sm-container">
+          <h2 class="text-6xl text-center font-bold">Mostaqel Platform</h2>
+          <p class="leading-[1.5] font-medium text-center w-full">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere consectetur labore odio
+            voluptatum quia nemo praesentium a dolorum possimus et, harum non laudantium
+          </p>
+        </div>
+        <!-- search input -->
+        <div class="w-full mt-12 relative">
+          <input
+            type="text"
+            class="w-full transition-[.3s] bg-white/20 rounded-xl py-3 text-[rgba(255,255,255,5)] outline-none font-medium text-sm px-4 pr-10 input-search"
+            id="search"
+            placeholder="Type what you're looking for"
+          />
+          <button class="absolute search-icon cursor-pointer">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-[36px] h-[36px]"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m15.75 15.75-2.489-2.489m0 0a3.375 3.375 0 1 0-4.773-4.773 3.375 3.375 0 0 0 4.774 4.774ZM21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+              />
+            </svg>
+          </button>
+        </div>
+        <!-- two buttons -->
+        <div class="mt-12 flex flex-wrap gap-12 font-semibold tracking-wide justify-center">
+          <button
+            class="px-3 py-2 shadow flex gap-2 items-center cursor-pointer rounded-xl transition-[.3s] bg-white/30 hover:bg-white/50 freelancers-button"
+          >
+            <span class="w-[30px] transition-[.3s]"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"
+                />
+              </svg>
+            </span>
+            Freelancers
+          </button>
+          <button
+            class="px-3 py-1 cursor-pointer shadow bg-[var(--color-primary)] rounded-xl transition-[.3s] exploreprojects-button"
+          >
+            Explore projects
+          </button>
+        </div>
+        <!-- line break -->
+        <div class="my-12">
+          <p class="bg-[var(--text-primary)]/30 w-full h-[2px]"></p>
+        </div>
+        <!-- numbers -->
+        <div class="flex gap-10 justify-center items-center flex-wrap numbers">
+          <div class="flex flex-col justify-center gap-2">
+            <h3 class="font-bold text-center text-base">+10k</h3>
+            <p
+              class="uppercase text-center text-xs font-medium text-[rgb(255,255,255,.8)] tracking-wider"
+            >
+              Successful Projects
+            </p>
+          </div>
+          <div
+            class="w-[1px] bg-[var(--text-primary)]/20 self-stretch items-center numbers-line"
+          ></div>
+
+          <div class="flex flex-col justify-center gap-2">
+            <h3 class="font-bold text-center text-base">100%</h3>
+            <p
+              class="uppercase text-center text-xs font-medium text-[rgb(255,255,255,.8)] tracking-wider"
+            >
+              Work Guarantee
+            </p>
+          </div>
+          <div
+            class="w-[1px] bg-[var(--text-primary)]/20 self-stretch items-center numbers-line"
+          ></div>
+
+          <div class="flex flex-col justify-center gap-2">
+            <h3 class="font-bold text-center text-base">24/7</h3>
+            <p
+              class="uppercase text-center text-xs font-medium text-[rgb(255,255,255,.8)] tracking-wider"
+            >
+              Expert Support
+            </p>
+          </div>
+          <div
+            class="w-[1px] bg-[var(--text-primary)]/20 self-stretch items-center numbers-line"
+          ></div>
+
+          <div class="flex flex-col justify-center gap-2">
+            <h3 class="text-center font-bold text-base">+4k</h3>
+            <p
+              class="uppercase text-center text-xs font-medium text-[rgb(255,255,255,.8)] tracking-wider"
+            >
+              Pro Freelancers
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section
+  appScrollAnimate
+  class="steps-section bg-[var(--theme-bg)] py-20 text-[var(--text-primary)]"
+>
+  <div class="lg-container">
+    <div class="sm-container mb-8!">
+      <h1 class="text-4xl text-center font-bold">
+        Success Journey with Mostaqel Starts
+        <span class="text-[var(--title-secondary)] italic font-semibold leading-[1.6]"
+          >in 4 Steps</span
+        >
+      </h1>
+    </div>
+    <div class="steps-cards gap-8 flex-wrap text-center">
+      <div class="steps-card before:content-['01'] relative flex basis-[22%]">
+        <div class="flex flex-col gap-4">
+          <span
+            class="w-[80px] h-[80px] bg-[#615FFF] flex justify-center items-center rounded-3xl mx-auto"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-rocket w-8 h-8"
+              aria-hidden="true"
+            >
+              <path
+                d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"
+              ></path>
+              <path
+                d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"
+              ></path>
+              <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path>
+              <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>
+            </svg>
+          </span>
+          <div class="flex flex-col gap-1">
+            <h3 class="text-base font-medium">Receive Your Project</h3>
+            <p class="text-xs leading-[1.5] text-[var(--paragraph-secondary)]">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero magni impedit maiores
+              reprehenderit in quod nemo modi consectetur.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="steps-card before:content-['02'] relative flex basis-[22%]">
+        <div class="flex flex-col gap-4">
+          <span
+            class="w-[80px] h-[80px] bg-[#00BBA7] flex justify-center items-center rounded-3xl mx-auto"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-circle-check w-8 h-8"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="m9 12 2 2 4-4"></path>
+            </svg>
+          </span>
+          <div class="flex flex-col gap-1">
+            <h3 class="text-base font-medium">Choose the Best</h3>
+            <p class="text-xs leading-[1.5] text-[var(--paragraph-secondary)] steps-card-desc">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero magni impedit maiores
+              reprehenderit in quod nemo modi consectetur.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="steps-card before:content-['03'] relative flex basis-[22%]">
+        <div class="flex flex-col gap-4">
+          <span
+            class="w-[80px] h-[80px] bg-[#1EAAAD] flex justify-center items-center rounded-3xl mx-auto"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-search w-8 h-8"
+              aria-hidden="true"
+            >
+              <path d="m21 21-4.34-4.34"></path>
+              <circle cx="11" cy="11" r="8"></circle>
+            </svg>
+          </span>
+          <div class="flex flex-col gap-1">
+            <h3 class="text-base font-medium">Receive Your Project</h3>
+            <p class="text-xs leading-[1.5] text-[var(--paragraph-secondary)] steps-card-desc">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero magni impedit maiores
+              reprehenderit in quod nemo modi consectetur.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="steps-card before:content-['04'] relative flex basis-[22%]">
+        <div class="flex flex-col gap-4">
+          <span
+            class="w-[80px] h-[80px] bg-[#2B7FFF] flex justify-center items-center rounded-3xl mx-auto"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-send w-8 h-8"
+              aria-hidden="true"
+            >
+              <path
+                d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"
+              ></path>
+              <path d="m21.854 2.147-10.94 10.939"></path>
+            </svg>
+          </span>
+          <div class="flex flex-col gap-1">
+            <h3 class="text-base font-medium">Receive Your Project</h3>
+            <p class="text-xs leading-[1.5] text-[var(--paragraph-secondary)]">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero magni impedit maiores
+              reprehenderit in quod nemo modi consectetur.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section appScrollAnimate class="bg-[var(--theme-bg)] py-20 text-[var(--text-primary)]">
+  <div class="lg-container">
+    <div class="flex flex-col gap-3 leading-[1.5]">
+      <h1 class="text-4xl max-w-120 font-bold">
+        Explore The Best
+        <span class="text-[var(--title-secondary)] italic font-semibold leading-[1.6]"
+          >Services</span
+        >
+        Offered by Mostaqel
+      </h1>
+      <div class="services-box flex justify-between">
+        <p class="services-lorem pl-12 max-w-120">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus illo amet esse
+          asperiores fugiat quis vero maiores, animi magnam enim quaerat ipsam blanditiis
+        </p>
+        <div
+          class="explore-services-button transition-[.3s] shadow-2xl flex gap-2 justify-center! items-center px-6 py-4 cursor-pointer rounded-2xl text-sm self-end bg-[var(--secondary-color)] hover:text-[var(--color-primary)]"
+        >
+          <button class="cursor-pointer">Explore All Services</button>
+          <span class="self-end transition-[.3s] max-w-[12px]">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-arrow-right group-hover:translate-x-1 transition-transform"
+              aria-hidden="true"
+            >
+              <path d="M5 12h14"></path>
+              <path d="m12 5 7 7-7 7"></path>
+            </svg>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- cards -->
+    <div class="w-full mt-10 mx-auto">
+      <swiper-container
+        #swiper
+        slides-per-view="4"
+        space-between="30"
+        [breakpoints]="swiperBreakpoints"
+        class="w-full"
+      >
+        @for (item of list; track $index) {
+          <swiper-slide> <app-home-freelancer-card [user]="item" /></swiper-slide>
+        }
+      </swiper-container>
+
+      <div class="flex justify-center items-center gap-3 mt-5">
+        <button
+          class="w-10 h-10 bg-[var(--color-primary)] flex justify-center items-center rounded-[50%] cursor-pointer"
+          (click)="swiperRightClick()"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+          </svg>
+        </button>
+
+        @for (item of listCount; track $index) {
+          <button
+            (click)="onClickBullets($index)"
+            class="cursor-pointer rounded-[50%] w-1 border-[3px] border-solid"
+            [id]="item.id"
+            #bullets
+            [class.bullet-active]="activeIndex() == $index"
+            [class.bullet-deactive]="activeIndex() != $index"
+          ></button>
+        }
+        <button
+          class="w-10 h-10 bg-[var(--color-primary)] flex justify-center items-center rounded-[50%] cursor-pointer"
+          (click)="swiperLeftClick()"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section appScrollAnimate class="bg-[var(--theme-bg)] py-20 text-[var(--text-primary)]">
+  <div class="lg-container p-10! bg-[var(--secondary-color)] rounded-4xl">
+    <div class="choose-platfrom flex gap-5 tracking-wide">
+      <div class="choose-platfrom-grid grid grid-cols-2 gap-5 basis-2/3">
+        <div
+          class="bg-[var(--theme-bg)] w-full rounded-3xl p-5 shadow-lg flex flex-col gap-2 justify-center"
+        >
+          <span
+            class="ml-auto rounded-xl w-[50px] h-[50px] bg-[#1B1415] flex justify-center items-center"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="28"
+              height="28"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-sparkles"
+              aria-hidden="true"
+              stroke="#F09202"
+            >
+              <path
+                d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"
+              ></path>
+              <path d="M20 2v4"></path>
+              <path d="M22 4h-4"></path>
+              <circle cx="4" cy="20" r="2"></circle>
+            </svg>
+          </span>
+          <h3 class="font-black text-lg! sm:text-xl mb-1! sm:mb-3">Professional Quality</h3>
+          <p class="text-[var(--paragraph-secondary)] text-sm! sm:text-[15px] font-bold">
+            A selection of freelancers carefully chosen to ensure the highest quality of execution.
+          </p>
+        </div>
+
+        <div
+          class="bg-[var(--theme-bg)] w-full rounded-3xl p-5 shadow-lg flex flex-col gap-2 justify-center"
+        >
+          <span
+            class="ml-auto rounded-xl w-[50px] h-[50px] bg-[#021821] flex justify-center items-center"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="28"
+              height="28"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-shield-check"
+              aria-hidden="true"
+              stroke="#019C6B"
+            >
+              <path
+                d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"
+              ></path>
+              <path d="m9 12 2 2 4-4"></path>
+            </svg>
+          </span>
+          <h3 class="font-black text-lg! sm:text-xl mb-1! sm:mb-3">Full Data Security</h3>
+          <p class="text-[var(--paragraph-secondary)] text-sm! sm:text-[15px] font-bold">
+            We use the latest encryption technologies to ensure the confidentiality of your
+            financial and personal info.
+          </p>
+        </div>
+
+        <div
+          class="bg-[var(--theme-bg)] w-full rounded-3xl p-5 shadow-lg flex flex-col gap-2 justify-center"
+        >
+          <span
+            class="ml-auto rounded-xl w-[50px] h-[50px] bg-[#06122F] flex justify-center items-center"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="28"
+              height="28"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-arrow-up-right"
+              aria-hidden="true"
+              stroke="#0E2B61"
+            >
+              <path d="M7 7h10v10"></path>
+              <path d="M7 17 17 7"></path>
+            </svg>
+          </span>
+          <h3 class="font-black text-lg! sm:text-xl mb-1! sm:mb-3">24/7 Technical Support</h3>
+          <p class="text-[var(--paragraph-secondary)] text-sm! sm:text-[15px] font-bold">
+            A specialized support team is always available to assist you at any time with full
+            professionalism.
+          </p>
+        </div>
+
+        <div
+          class="bg-[var(--theme-bg)] w-full rounded-3xl p-5 shadow-lg flex flex-col gap-2 justify-center"
+        >
+          <span
+            class="ml-auto rounded-xl w-[50px] h-[50px] bg-[#0C1326] flex justify-center items-center"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="28"
+              height="28"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-wallet"
+              aria-hidden="true"
+              stroke="#1EAAAD"
+            >
+              <path
+                d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"
+              ></path>
+              <path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"></path>
+            </svg>
+          </span>
+          <h3 class="font-black text-lg! sm:text-xl mb-1! sm:mb-3">Secure Payment</h3>
+          <p class="text-[var(--paragraph-secondary)] text-sm! sm:text-[15px] font-bold">
+            The payment protection system guarantees the rights of both parties until the work is
+            successfully completed.
+          </p>
+        </div>
+      </div>
+      <div class="choose-platfrom-heading flex justify-center items-center basis-1/3">
+        <div class="flex flex-col gap-3">
+          <h1 class="text-4xl text-center font-bold">
+            Why Choose
+            <span class="text-[var(--title-secondary)] italic font-semibold leading-[1.6]"
+              >Mostaqel</span
+            >
+          </h1>
+          <p
+            class="leading-relaxed text-[var(--paragraph-secondary)] text-sm! sm:text-[15px] font-bold text-center"
+          >
+            We don't just provide a work platform; we build successful professional relationships
+            between creators and business owners.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section appScrollAnimate class="bg-[var(--theme-bg)] py-20 text-[var(--text-primary)]">
+  <div class="lg-container p-15! bg-[var(--secondary-color)] rounded-4xl">
+    <div class="flex flex-col gap-6 justify-center sm-container">
+      <span
+        class="mx-auto rounded-xl w-[70px] h-[70px] shadow-[0_10px_30px_rgba(0,0,0,0.5)] bg-[#0C1326] flex justify-center items-center transition-transform hover:rotate-[-30deg]"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24px"
+          height="24px"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-message-square w-8 h-8 sm:w-10 sm:h-10 lg:w-11 lg:h-11"
+          aria-hidden="true"
+          stroke="#1EAAAD"
+        >
+          <path
+            d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z"
+          ></path>
+        </svg>
+      </span>
+
+      <h1 class="text-4xl text-center font-bold">
+        Have an
+        <span class="text-[var(--title-secondary)] italic font-semibold leading-[1.6]"
+          >Inquiry</span
+        >
+        ? or Need Help
+      </h1>
+      <p
+        class="leading-relaxed text-[var(--paragraph-secondary)] text-sm! sm:text-[15px] font-bold text-center"
+      >
+        Our team is always available to answer your questions and provide the necessary support.
+        Don't hesitate to reach out at any time.
+      </p>
+      <div class="flex justify-center">
+        <button
+          class="flex justify-center items-center text-base gap-2 px-5 py-2.5 cursor-pointer shadow bg-[var(--color-primary)] rounded-lg transition-[.3s] exploreprojects-button"
+        >
+          Contact Us Now
+          <span class="w-[30px] transition-[.3s]"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"
+              />
+            </svg>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer appScrollAnimate />

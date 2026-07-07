@@ -1,0 +1,139 @@
+.lg-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 16px;
+  width: 100%;
+}
+@media (max-width: 767px) {
+  .lg-container {
+    max-width: 700px;
+    padding: 0 10px;
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 500px) {
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .search-container {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  .search-container button {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .dialog {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .dialog div {
+    align-items: center;
+  }
+}
+@media (max-width: 400px) {
+  .lg-container {
+    max-width: 400px;
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 200px) {
+  .lg-container {
+    max-width: 100px;
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 768px) {
+  .lg-container {
+    max-width: 1000;
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (min-width: 900px) {
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+.hidden {
+  display: none;
+}
+.overlay {
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.proposal-dialog {
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%);
+}
+
+.pagiation {
+  background-color: var(--secondary-color);
+  border-radius: 25px;
+  border: 1px solid var(--border-components);
+  padding: 0px;
+  overflow: hidden;
+}
+
+::ng-deep .p-paginator-page-selected {
+  background-color: var(--color-primary) !important;
+}
+
+::ng-deep .p-paginator-pages {
+  gap: 12px;
+  padding: 5px 0;
+}
+::ng-deep .p-paginator-first.p-disabled,
+::ng-deep .p-paginator-prev.p-disabled,
+::ng-deep .p-paginator-next.p-disabled,
+::ng-deep .p-paginator-last.p-disabled {
+  cursor: pointer !important;
+  background-color: var(--theme-bg) !important;
+  opacity: 20%;
+}
+::ng-deep .p-paginator-last,
+::ng-deep .p-paginator-first,
+::ng-deep .p-paginator .p-paginator-pages {
+  margin-right: 5px !important;
+  margin-left: 5px !important;
+}
+::ng-deep .p-paginator .p-paginator-page,
+::ng-deep .p-paginator-first,
+::ng-deep .p-paginator-last,
+::ng-deep .p-paginator-next,
+::ng-deep .p-paginator-prev {
+  padding: 0 !important;
+  min-width: 30px !important;
+  height: 30px;
+  border-radius: 8px !important;
+}
+::ng-deep .p-paginator-first:hover,
+::ng-deep .p-paginator-prev:hover,
+::ng-deep .p-paginator-next:hover,
+::ng-deep .p-paginator-last:hover {
+  background-color: var(--color-primary) !important;
+}
+::ng-deep .p-paginator .p-paginator-page:hover:not(.p-paginator-page-selected) {
+  font-weight: 600;
+  background-color: var(--theme-bg) !important;
+}

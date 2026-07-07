@@ -1,0 +1,621 @@
+<app-header />
+@if (!userPostion()) {
+  <section class="bg-[var(--theme-bg)] text-[var(--text-primary)] py-10">
+    <div class="flex justify-center mx-auto p-4.5">
+      <div class="md-contianer">
+        <app-form-header
+          primareyheading="Create Account"
+          Secondaryheading="Select account type, you can change it later"
+        />
+        <div class="flex justify-center gap-8 flex-wrap">
+          <a class="block" (click)="onSelectPosition('worker')">
+            <div
+              class="hover:scale-[105%] transition-[.3s] bg-[var(--secondary-color)] rounded-3xl p-10 border border-solid border-[var(--border-components)] cursor-pointer flex flex-col gap-3 justify-center"
+            >
+              <span
+                class="mx-auto p-2 bg-[#7e849079] flex justify-center items-center w-fit rounded-2xl"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-user w-12 h-12 text-primary"
+                  aria-hidden="true"
+                  stroke="var(--color-primary)"
+                >
+                  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </span>
+              <h3
+                class="mx-auto text-center text-[var(--text-primary)]! font-medium tracking-wide text-base"
+              >
+                FreeLancer Account
+              </h3>
+              <p
+                class="text-center text-[var(--paragraph-secondary)] font-medium max-w-[300px] w-full"
+              >
+                For freelancers looking for job opportunities and projects
+              </p>
+            </div>
+          </a>
+
+          <a class="block" (click)="onSelectPosition('client')">
+            <div
+              class="bg-[var(--secondary-color)] hover:scale-[105%] transition-[.3s] rounded-3xl p-10 border border-solid border-[var(--border-components)] cursor-pointer flex flex-col gap-3 justify-center"
+            >
+              <span
+                class="mx-auto p-2 bg-[#7e849079] flex justify-center items-center w-fit rounded-2xl"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-building2 lucide-building-2 w-12 h-12 text-primary"
+                  aria-hidden="true"
+                  stroke="var(--color-primary)"
+                >
+                  <path d="M10 12h4"></path>
+                  <path d="M10 8h4"></path>
+                  <path d="M14 21v-3a2 2 0 0 0-4 0v3"></path>
+                  <path
+                    d="M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2"
+                  ></path>
+                  <path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"></path>
+                </svg>
+              </span>
+              <h3
+                class="mx-auto text-center text-[var(--text-primary)]! font-medium tracking-wide text-base"
+              >
+                Client Account
+              </h3>
+              <p
+                class="text-center text-[var(--paragraph-secondary)] font-medium max-w-[300px] w-full"
+              >
+                For project owners and companies looking for professional freelancer
+              </p>
+            </div>
+          </a>
+        </div>
+        <p class="flex justify-center mt-6 text-base">
+          Already have an account ?
+          <a
+            routerLink="/login"
+            class="ml-1 text-[var(--color-primary)] font-semibold cursor-pointer hover:text-[#1eabada8]"
+            >Login</a
+          >
+        </p>
+      </div>
+    </div>
+  </section>
+}
+
+@if (userPostion()) {
+  <section class="bg-[var(--theme-bg)] register-section">
+    <div class="card flex justify-center">
+      <p-stepper [value]="1" class="basis-[450px]" [linear]="true">
+        <p-step-list>
+          <p-step [value]="1">Step I</p-step>
+          <p-step [value]="2">Step II</p-step>
+        </p-step-list>
+        <p-step-panels>
+          <p-step-panel [value]="1">
+            <ng-template #content let-activateCallback="activateCallback">
+              <div class="md-container shadow bg-[var(--secondary-color)] rounded-2xl">
+                <div class="p-6 py-6 text-xl">
+                  <img src="logo.png" alt="logo" class="block w-[200px] mx-auto mb-2 rounded-3xl" />
+                  <form [formGroup]="form1" action="" class="flex flex-col gap-5">
+                    <div class="flex flex-col gap-1">
+                      <label for="first" class="text-lg font-medium ml-1">First name</label>
+
+                      <div class="relative w-full">
+                        <span class="form-icon"
+                          ><svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="lucide lucide-user w-5 h-5 text-primary"
+                            aria-hidden="true"
+                            stroke="var(--color-primary)"
+                          >
+                            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                          </svg>
+                        </span>
+                        <input
+                          formControlName="firstName"
+                          type="text"
+                          name="first"
+                          id="first"
+                          class="p-1.5 pl-10 border-[3px] text-base border-solid border-[var(--border-components)] rounded-lg outline-0 w-full focus:border-[var(--color-primary)]"
+                          placeholder="First name"
+                        />
+                      </div>
+                      @if (form1.touched && form1.controls.firstName.invalid) {
+                        <div class="not-valid-input">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            class="size-6"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"
+                            />
+                          </svg>
+                          <p>Please enter a valid FirstName</p>
+                        </div>
+                      }
+                    </div>
+                    <div class="flex flex-col gap-1">
+                      <label for="last" class="text-lg font-medium ml-1">last Name</label>
+                      <div class="relative w-full">
+                        <span class="form-icon"
+                          ><svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="lucide lucide-user w-5 h-5 text-primary"
+                            aria-hidden="true"
+                            stroke="var(--color-primary)"
+                          >
+                            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                          </svg>
+                        </span>
+                        <input
+                          formControlName="lastName"
+                          type="text"
+                          name="last"
+                          id="last"
+                          class="p-1.5 pl-10 border-[3px] text-base border-solid border-[var(--border-components)] rounded-lg outline-0 w-full focus:border-[var(--color-primary)]"
+                          placeholder="last name"
+                        />
+                      </div>
+                      @if (form1.touched && form1.controls.lastName.invalid) {
+                        <div class="not-valid-input">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            class="size-6"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"
+                            />
+                          </svg>
+                          <p>Please enter a valid lastName</p>
+                        </div>
+                      }
+                    </div>
+                    <div class="flex flex-col gap-1">
+                      <label for="email" class="text-lg font-medium ml-1">Email</label>
+                      <div class="relative w-full">
+                        <span class="form-icon">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="lucide lucide-mail w-5 h-5 text-primary"
+                            aria-hidden="true"
+                            stroke="var(--color-primary)"
+                          >
+                            <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path>
+                            <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                          </svg>
+                        </span>
+                        <input
+                          formControlName="email"
+                          type="email"
+                          name="email"
+                          id="email"
+                          class="p-1.5 pl-10 border-[3px] text-base border-solid border-[var(--border-components)] rounded-lg outline-0 w-full focus:border-[var(--color-primary)]"
+                          placeholder="Email"
+                        />
+                      </div>
+                      @if (form1.touched && form1.controls.email.invalid) {
+                        <div class="not-valid-input">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            class="size-6"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"
+                            />
+                          </svg>
+                          <p>Please enter valid email</p>
+                        </div>
+                      }
+                    </div>
+                    <div class="flex flex-col gap-1">
+                      <label for="password" class="text-lg font-medium ml-1">Password</label>
+                      <div class="relative w-full">
+                        <span class="form-icon"
+                          ><svg
+                            _ngcontent-ng-c3334128639=""
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            stroke="var(--color-primary)"
+                            class="size-6"
+                          >
+                            <path
+                              _ngcontent-ng-c3334128639=""
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"
+                            ></path>
+                          </svg>
+                        </span>
+                        <input
+                          formControlName="password"
+                          type="password"
+                          name="password"
+                          id="password"
+                          class="p-1.5 pl-10 border-[3px] text-base border-solid border-[var(--border-components)] rounded-lg outline-0 w-full focus:border-[var(--color-primary)]"
+                          placeholder="Password"
+                        />
+                      </div>
+                      @if (form1.touched && form1.controls.password.invalid) {
+                        <div class="not-valid-input">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            class="size-6"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"
+                            />
+                          </svg>
+                          <p>
+                            Enter a combination of at least six numbers, letters and punctuation
+                            marks
+                          </p>
+                        </div>
+                      }
+                    </div>
+                  </form>
+                  <div class="flex items-center pt-6 justify-between">
+                    <button
+                      class="hover:bg-[#3f3f46] font-medium transition-[.3s] p-2 px-4 flex justify-center items-center cursor-pointer rounded-md bg-[#27272a]"
+                    >
+                      Back
+                    </button>
+                    <p-button
+                      label="Next"
+                      iconPos="right"
+                      (onClick)="activateCallback(2)"
+                      [disabled]="form1.invalid"
+                      class="cursor-pointer!"
+                    />
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </p-step-panel>
+          <p-step-panel [value]="2">
+            <ng-template #content let-activateCallback="activateCallback">
+              <div
+                class="md-container shadow bg-[var(--secondary-color)] rounded-2xl w-full py-1.5"
+              >
+                <div class="p-6 py-6 text-xl">
+                  <form [formGroup]="form2" action="" class="flex flex-col gap-5">
+                    <div class="flex flex-col gap-1.5 items-center relative w-fit mx-auto">
+                      <div
+                        class="relative h-full flex flex-col items-center justify-center text-center mx-auto p-6 rounded-[50%] bg-[var(--theme-bg)] cursor-pointer overflow-hidden border-[2px] border-dashed border-[#fff]"
+                      >
+                        @if (!userPhoto()) {
+                          <p-fileupload
+                            mode="basic"
+                            name="file"
+                            chooseIcon="pi pi-upload"
+                            url="https://localhost:7148/users/upload-profile-photo-cloudinary"
+                            accept="image/*"
+                            maxFileSize="1000000"
+                            [auto]="true"
+                            chooseLabel="a"
+                            styleClass="upload-overlay-btn"
+                            (onUpload)="onUploadImage($event)"
+                          />
+                        }
+                        @if (userPhoto()) {
+                          <img
+                            [src]="userPhoto()?.url"
+                            alt=""
+                            class="w-full h-full inset-0 absolute"
+                          />
+                        }
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          class="lucide lucide-camera w-8 h-8 text-gray-400"
+                          aria-hidden="true"
+                        >
+                          <path
+                            d="M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z"
+                          ></path>
+                          <circle cx="12" cy="13" r="3"></circle>
+                        </svg>
+                        <span class="text-xs text-gray-400 mt-1">Add Photo </span>
+                      </div>
+                      @if (userPhoto()) {
+                        <button
+                          type="button"
+                          class="cursor-pointer absolute top:0 right-0 w-7 h-7 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors shadow-md z-10"
+                          (click)="removeUserPhoto()"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="lucide lucide-x w-4 h-4"
+                            aria-hidden="true"
+                          >
+                            <path d="M18 6 6 18"></path>
+                            <path d="m6 6 12 12"></path>
+                          </svg>
+                        </button>
+                      }
+                      <p class="text-[10px]! text-center">JPEG, PNG, GIF, WebP (max 5MB)</p>
+                    </div>
+                    <div class="flex flex-col gap-1">
+                      <label for="country" class="text-lg font-medium ml-1">Country</label>
+                      <select
+                        formControlName="country"
+                        id="country"
+                        name="country"
+                        class="focus:shadow-sm py-3 px-4 text-base border-[2px] border-[var(--border-components)] rounded-xl text-[#f8fafc] cursor-pointer outline-0 transition-[.2s]"
+                      >
+                        <option value="" disabled selected>Select a country</option>
+                        @for (item of countries; track $index) {
+                          <option [value]="item" class="text-[#000]">{{ item }}</option>
+                        }
+                      </select>
+                      @if (form2.touched && form2.controls.country.invalid) {
+                        <div class="not-valid-input">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            class="size-6"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"
+                            />
+                          </svg>
+                          <p>Please select a country</p>
+                        </div>
+                      }
+                    </div>
+
+                    <div class="flex flex-col gap-1">
+                      <label for="tel" class="text-lg font-medium ml-1">Phone number</label>
+                      <div class="w-full relative">
+                        <span class="form-icon">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="lucide lucide-phone w-5 h-5 text-primary"
+                            aria-hidden="true"
+                            stroke="var(--color-primary)"
+                          >
+                            <path
+                              d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"
+                            ></path>
+                          </svg>
+                        </span>
+                        <input
+                          formControlName="phoneNumber"
+                          type="tel"
+                          name="tel"
+                          id="tel"
+                          class="p-1.5 pl-10 border-[3px] text-base border-solid border-[var(--border-components)] rounded-lg outline-0 w-full focus:border-[var(--color-primary)]"
+                          placeholder="Phone number"
+                        />
+                      </div>
+                      @if (form2.touched && form2.controls.phoneNumber.invalid) {
+                        <div class="not-valid-input">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            class="size-6"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"
+                            />
+                          </svg>
+                          <p>Please enter a valid phoneNumber</p>
+                        </div>
+                      }
+                    </div>
+                    <div class="flex flex-col gap-1">
+                      <label for="gender" class="text-lg font-medium ml-1">Gender</label>
+                      <select
+                        formControlName="gender"
+                        id="gender"
+                        name="gender"
+                        class="focus:shadow-sm py-3 px-4 text-base border-[2px] border-[var(--border-components)] rounded-xl text-[#f8fafc] cursor-pointer outline-0 transition-[.2s]"
+                      >
+                        <option value="" disabled selected>Select a Gender</option>
+
+                        <option value="male" class="text-[#000]">Male</option>
+                        <option value="female" class="text-[#000]">Female</option>
+                      </select>
+                      @if (form2.touched && form2.controls.gender.invalid) {
+                        <div class="not-valid-input">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            class="size-6"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"
+                            />
+                          </svg>
+                          <p>Please select a gender</p>
+                        </div>
+                      }
+                    </div>
+                    <div class="flex flex-col gap-1">
+                      <div class="flex gap-2 justify-center mr-auto cursor-pointer text-base">
+                        <input
+                          formControlName="checkbox"
+                          type="checkbox"
+                          name="check"
+                          id="check"
+                          class="border-[3px] w-fit text-base border-solid border-[var(--border-components)] rounded-lg outline-0"
+                        />
+                        <label for="check" class="text-base font-medium ml-1"
+                          >I Agree to Terms and Conditions</label
+                        >
+                      </div>
+                      @if (form2.touched && form2.controls.checkbox.invalid) {
+                        <div class="not-valid-input">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            class="size-6"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"
+                            />
+                          </svg>
+                          <p>Please agree for terms</p>
+                        </div>
+                      }
+                    </div>
+                  </form>
+
+                  <div class="flex pt-6 justify-between">
+                    <p-button
+                      label="Back"
+                      severity="secondary"
+                      icon="pi pi-arrow-left"
+                      (onClick)="activateCallback(1)"
+                    />
+                    <button
+                      (click)="onCreateAccount()"
+                      class="hover:bg-[#34d3997d] font-medium transition-[.3s] p-2 px-4 flex justify-center items-center cursor-pointer rounded-md bg-[#34d399] text-[#000]"
+                    >
+                      Create
+                    </button>
+                  </div>
+                  @if (registerErrorMsg()) {
+                    <div class="pt-3 px-1">
+                      <div class="not-valid-input">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke-width="1.5"
+                          stroke="currentColor"
+                          class="size-6"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"
+                          />
+                        </svg>
+                        <p>{{ registerErrorMsg() }}</p>
+                      </div>
+                    </div>
+                  }
+                </div>
+              </div>
+            </ng-template>
+          </p-step-panel>
+        </p-step-panels>
+      </p-stepper>
+    </div>
+  </section>
+}
+<app-footer />

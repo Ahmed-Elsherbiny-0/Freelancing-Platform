@@ -1,0 +1,137 @@
+<app-header />
+<section class="bg-[var(--theme-bg)] w-full">
+  <div class="container text-[var(--text-primary)]">
+    <div class="container-login">
+      <app-form-header primareyheading="Login" Secondaryheading="Welcome back to Mostaqel" />
+
+      <form [formGroup]="form">
+        <div>
+          <label for="email">Email or Phone Number</label>
+          <div class="input-svg">
+            <input
+              type="text"
+              name="email"
+              id="email"
+              placeholder="Enter your email or phone number"
+              formControlName="email"
+            />
+            <span
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"
+                />
+              </svg>
+            </span>
+          </div>
+          @if (form.touched && form.controls.email.invalid) {
+            <div class="not-valid-input">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"
+                />
+              </svg>
+              <p>Please enter a valid mobile number or email address.</p>
+            </div>
+          }
+        </div>
+
+        <div>
+          <label for="password">Password </label>
+          <div class="input-svg">
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Enter your password"
+              formControlName="password"
+            />
+            <span
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"
+                />
+              </svg>
+            </span>
+          </div>
+          @if (form.touched && form.controls.password.touched && form.controls.password.invalid) {
+            <div class="not-valid-input">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"
+                />
+              </svg>
+              <p>Enter a combination of at least six numbers, letters and punctuation marks</p>
+            </div>
+          }
+        </div>
+
+        @if (loginErrorMsg()) {
+          <div class="pt-3 px-1">
+            <div class="not-valid-input">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"
+                />
+              </svg>
+              <p>{{ loginErrorMsg() }}</p>
+            </div>
+          </div>
+        }
+        <a routerLink="/forget-password" class="link">Forgot Password?</a>
+        <button class="login" (click)="loginRequest()">login</button>
+        <div class="or">
+          <span>or</span>
+        </div>
+        <p class="register-link">
+          Don't have an account?<a routerLink="/signup" class="link"> Register Now</a>
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+<app-footer />

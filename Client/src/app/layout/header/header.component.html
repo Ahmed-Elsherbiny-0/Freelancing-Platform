@@ -1,0 +1,427 @@
+<header class="header bg-[var(--secondary-color)] text-[var(--text-primary)] relative">
+  <div class="lg-container relative">
+    <div class="main-heading flex justify-between items-center text-base font-medium min-h-18">
+      <!-- Logo -->
+      <div class="img-container flex gap-6">
+        <a routerLink="" class="inline-block cursor-pointer max-w-[100px]">
+          <img src="logo.png" alt="logo" class="w-full rounded-xl" />
+        </a>
+
+        <button
+          class="cursor-pointer flex justify-center items-center rounded-2xl"
+          (click)="toggleLight()"
+        >
+          @if (theme()) {
+            <span
+              class="w-[30px] p-1 rounded-2xl shadow-2xl bg-[var(--secondary-color)] flex justify-center items-center border border-solid border-[1px] border-[rgba(255,255,255,.2)]"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-sun text-accent group-hover:rotate-45 transition-transform duration-500 hover:rotate-90"
+                aria-hidden="true"
+                stroke="#F8BD29"
+              >
+                <circle cx="12" cy="12" r="4"></circle>
+                <path d="M12 2v2"></path>
+                <path d="M12 20v2"></path>
+                <path d="m4.93 4.93 1.41 1.41"></path>
+                <path d="m17.66 17.66 1.41 1.41"></path>
+                <path d="M2 12h2"></path>
+                <path d="M20 12h2"></path>
+                <path d="m6.34 17.66-1.41 1.41"></path>
+                <path d="m19.07 4.93-1.41 1.41"></path>
+              </svg>
+            </span>
+          }
+          @if (!theme()) {
+            <span
+              class="w-[30px] p-1 rounded-2xl shadow-2xl bg-[#F4F5F6] flex justify-center items-center border border-solid border-[1px] border-[var(--text-primary)]"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="hover:rotate-45 lucide lucide-moon text-gray-medium group-hover:-rotate-12 transition-transform duration-300"
+                aria-hidden="true"
+                fill-opacity="0.2"
+                stroke="rgba(0,0,0,.5)"
+              >
+                <path
+                  d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"
+                ></path>
+              </svg>
+            </span>
+          }
+        </button>
+      </div>
+      <!-- Desktop Nav -->
+      <nav class="main-nav cursor-pointer">
+        <ul class="flex gap-6 transition-[.3s]">
+          <li><a routerLink="/contact" class="hover:text-[var(--color-primary)]">Contact Us</a></li>
+          <li><a routerLink="/requests" class="hover:text-[var(--color-primary)]">Requests</a></li>
+          <li>
+            <a routerLink="/workers" class="hover:text-[var(--color-primary)]">Freelancers</a>
+          </li>
+          <li><a routerLink="/announcements" class="hover:text-[var(--color-primary)]">Jobs</a></li>
+          <li><a routerLink="/" class="hover:text-[var(--color-primary)]">Home</a></li>
+        </ul>
+      </nav>
+
+      <!-- Right Controls -->
+      <div class="controls flex justify-center items-center gap-4">
+        <!-- Theme Toggle -->
+
+        <!-- Auth Buttons -->
+        @if (!authService.currentUser()) {
+          <div class="auth-group flex gap-3 font-semibold tracking-wide!">
+            <button
+              class="login-button cursor-pointer p-1.5 px-3 rounded-lg border border-solid border-[1px] border-[rgba(255,255,255,.2)] text-[var(--color-primary)] flex justify-center items-center"
+              (click)="onClickLogin()"
+            >
+              Login
+              <span class="w-[30px] flex justify-center items-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-log-in group-hover:-translate-x-0.5 transition-transform"
+                  aria-hidden="true"
+                >
+                  <path d="m10 17 5-5-5-5"></path>
+                  <path d="M15 12H3"></path>
+                  <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                </svg>
+              </span>
+            </button>
+            <button
+              class="login-button cursor-pointer p-1.5 px-3 rounded-lg bg-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:opacity-80 font-medium"
+              routerLink="/signup"
+            >
+              Register
+            </button>
+          </div>
+        } @else if (authService.currentUser() != null) {
+          <div class="account flex gap-6">
+            @if (authService.currentUser()?.isClient) {
+              <button
+                class="px-3 py-1 rounded-2xl shadow-2xl bg-[var(--secondary-color)] flex justify-center items-center border border-solid border-[1px] border-[var(--border-components)] cursor-pointer text-green-500"
+                routerLink="/addjob"
+              >
+                <span class="tracking-wide">Add New Job </span>
+              </button>
+            }
+            <button
+              class="inline-block relative p-1 rounded-2xl shadow-2xl bg-[var(--main-icons)] flex justify-center items-center border border-solid border-[1px] border-[var(--border-components)] cursor-pointer transition-[.3s] hover:rotate-[30deg]"
+            >
+              <span
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-bell text-primary group-hover:rotate-12 transition-transform duration-300"
+                  aria-hidden="true"
+                  stroke="#1A9A9E"
+                >
+                  <path d="M10.268 21a2 2 0 0 0 3.464 0"></path>
+                  <path
+                    d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"
+                  ></path>
+                </svg>
+              </span>
+              <p class="before-messages">0</p>
+            </button>
+
+            <button
+              class="inline-block relative px-2 py-1 rounded-2xl shadow-2xl bg-[var(--main-icons)] border border-[var(--border-components)] flex justify-center items-center border border-solid cursor-pointer transition-[.3s] hover:rotate-[30deg]"
+              [routerLink]="['/messages']"
+            >
+              <span
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="25"
+                  height="25"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-message-square-more text-primary group-hover:text-white transition-colors duration-300"
+                  aria-hidden="true"
+                  stroke="#1A9A9E"
+                >
+                  <path
+                    d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z"
+                  ></path>
+                  <path d="M12 11h.01"></path>
+                  <path d="M16 11h.01"></path>
+                  <path d="M8 11h.01"></path>
+                </svg>
+              </span>
+              <p class="before-messages">{{ unreaded() }}</p>
+            </button>
+
+            <button
+              class="inline-block px-2 py-1 rounded-2xl shadow-2xl bg-[var(--secondary-color)] flex justify-center items-center border border-solid border-[1px] border-[var(--border-components)] cursor-pointer text-green-500"
+              (click)="onClickProfile($event)"
+            >
+              <span>{{ authService.profileIconName }} </span>
+            </button>
+          </div>
+        }
+        <!-- Hamburger -->
+        <button class="hamburger" (click)="toggleMenu()">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="absolute bottom-[-370px] right-0 z-[10]">
+      @if (profileDialog()) {
+        <div class="text-[var(--text-primary)]">
+          <div
+            class="w-[250px] bg-[var(--secondary-color)] mt-1.5 rounded-xl border-[1px] border-solid border-[var(--border-components)]"
+          >
+            <div class="p-3 flex flex-col gap-2">
+              <div class="flex flex-col basis-full gap-3">
+                <div
+                  class="flex flex-col items-center gap-2 font-semibold py-6 justify-center bg-[var(--border-components)] rounded-2xl"
+                >
+                  <p
+                    class="p-3 w-fit bg-[#1D293D] rounded-xl text-[var(--text-primary)] font-bold tracking-widest border-[2px] border-solid border-[var(--text-primary)]"
+                  >
+                    {{ authService.profileIconName }}
+                  </p>
+                  <p>
+                    {{ authService.currentUser()?.fristName }}
+                    {{ authService.currentUser()?.lastName }}
+                  </p>
+                  <p class="text-xs px-4 py-1 rounded-2xl bg-[#1A4649] text-[#01C98C]">
+                    {{ authService.currentUser()?.title }} Freelancer
+                  </p>
+                </div>
+
+                <div
+                  class="menu-item p-2 py-3 transition-[.3s] hover:bg-[var(--border-components)] hover:cursor-pointer hover:rounded-md cursor-pointer"
+                >
+                  <button class="flex gap-25 cursor-pointer" routerLink="/update-account">
+                    <div class="flex gap-3 items-center">
+                      <span
+                        class="icon-menu transition-[.3s] w-[24px] h-[24px] flex justify-center items-center bg-[#29344d3a] border border-solid border-[#ffffff2d] rounded-sm"
+                        ><svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="19"
+                          height="19"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          class="lucide lucide-user group-hover/menu:translate-x-1 transition-transform"
+                          aria-hidden="true"
+                          stroke="var(--text-primary)"
+                        >
+                          <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                          <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                      </span>
+                      <span class="font-semibold tracking-wider">Profile</span>
+                    </div>
+                    <span class="block w-[14px] h-[14px] hidden menu-hidden">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="size-6"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="m8.25 4.5 7.5 7.5-7.5 7.5"
+                        />
+                      </svg>
+                    </span>
+                  </button>
+                </div>
+
+                <div
+                  class="menu-item p-2 py-3 transition-[.3s] hover:bg-[var(--border-components)] hover:cursor-pointer hover:rounded-md cursor-pointer"
+                >
+                  <button class="flex gap-25 cursor-pointer" routerLink="/requests">
+                    <div class="flex gap-3 items-center">
+                      <span
+                        class="icon-menu transition-[.3s] w-[24px] h-[24px] flex justify-center items-center bg-[#29344d3a] border border-solid border-[#ffffff2d] rounded-sm"
+                        ><svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="19"
+                          height="19"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          class="lucide lucide-layout-grid group-hover/menu:translate-x-1 transition-transform"
+                          aria-hidden="true"
+                        >
+                          <rect width="7" height="7" x="3" y="3" rx="1"></rect>
+                          <rect width="7" height="7" x="14" y="3" rx="1"></rect>
+                          <rect width="7" height="7" x="14" y="14" rx="1"></rect>
+                          <rect width="7" height="7" x="3" y="14" rx="1"></rect>
+                        </svg>
+                      </span>
+                      <span class="font-semibold tracking-wider">Projects</span>
+                    </div>
+                    <span class="block w-[14px] h-[14px] hidden menu-hidden">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="size-6"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="m8.25 4.5 7.5 7.5-7.5 7.5"
+                        />
+                      </svg>
+                    </span>
+                  </button>
+                </div>
+
+                <div
+                  class="menu-item p-2 py-3 transition-[.3s] hover:bg-[#261930] hover:cursor-pointer hover:rounded-md cursor-pointer"
+                >
+                  <button
+                    class="flex gap-25 cursor-pointer"
+                    (click)="onClickLogout()"
+                    routerLink="/login"
+                  >
+                    <div class="flex gap-3 items-center">
+                      <span
+                        class="logout transition-[.3s] w-[24px] h-[24px] flex justify-center items-center bg-[#521B38] border border-solid border-[#ffffff2d] rounded-sm"
+                        ><svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="20"
+                          height="20"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          class="lucide lucide-log-out"
+                          aria-hidden="true"
+                          stroke="#FFA1AD"
+                        >
+                          <path d="m16 17 5-5-5-5"></path>
+                          <path d="M21 12H9"></path>
+                          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        </svg>
+                      </span>
+                      <span class="font-semibold text-[#FFA1AD] tracking-wider">Logout</span>
+                    </div>
+                    <span class="w-[10px]! h-[10px]">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        class="size-6"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="m8.25 4.5 7.5 7.5-7.5 7.5"
+                        />
+                      </svg>
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" [class.menu-open]="menuOpen()" [class.menu-closed]="!menuOpen()">
+  <ul
+    class="text-[var(--text-primary)] flex flex-col justify-center items-center gap-6 transition-[.3s] mb-6!"
+  >
+    <li><a routerLink="/home" class="hover:text-[var(--color-primary)]">Home</a></li>
+    <li><a routerLink="/jobs" class="hover:text-[var(--color-primary)]">Jobs</a></li>
+    <li><a routerLink="/freelancers" class="hover:text-[var(--color-primary)]">Freelancers</a></li>
+    <li><a routerLink="/requests" class="hover:text-[var(--color-primary)]">Requests</a></li>
+    <li><a routerLink="/contact" class="hover:text-[var(--color-primary)]">Contact Us</a></li>
+  </ul>
+
+  <div class="mobile-auth flex flex-col gap-4 font-semibold tracking-wide!">
+    <button
+      class="login-button cursor-pointer p-1.5 px-3 rounded-lg border border-solid border-[1px] border-[rgba(255,255,255,.2)] text-[var(--color-primary)] flex justify-center items-center"
+      (click)="onClickLogin()"
+    >
+      Login
+      <span class="w-[30px] flex justify-center items-center">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-log-in group-hover:-translate-x-0.5 transition-transform"
+          aria-hidden="true"
+        >
+          <path d="m10 17 5-5-5-5"></path>
+          <path d="M15 12H3"></path>
+          <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+        </svg>
+      </span>
+    </button>
+    <button
+      class="login-button cursor-pointer p-1.5 px-3 rounded-lg bg-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:opacity-80 font-medium"
+      routerLink="/register"
+    >
+      Register
+    </button>
+  </div>
+</div>

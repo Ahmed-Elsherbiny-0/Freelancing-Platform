@@ -1,0 +1,160 @@
+/* - Font sizes (px)
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+ - Spacing system (px)
+2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+*/
+
+.container {
+  max-width: 1000px;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 48px;
+}
+
+form div {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.container-login {
+  max-width: 450px;
+  width: 100%;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background-color: var(--secondary-color);
+  padding: 48px 32px;
+  border-radius: 11px;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.1);
+  font-size: 18px;
+  width: 100%;
+}
+form div label {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+.input-svg input {
+  padding: 20px;
+  padding-left: 48px;
+  outline: 2px solid transparent;
+  border-radius: 8px;
+  color: var(--text-primary);
+  background-color: rgb(var(--bg-secondary));
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--border-components);
+  font-size: 16px;
+}
+.input-svg input:focus {
+  border: 1px solid rgb(var(--button-primary));
+  box-shadow: 0 0 0 2px rgba(0, 187, 204, 0.307);
+}
+.input-svg {
+  position: relative;
+}
+.input-svg span {
+  width: 100%;
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  left: calc((48px - 24px) / 2);
+}
+.input-svg span svg {
+  stroke: #000;
+}
+.link {
+  text-decoration: none;
+  color: var(--color-primary);
+  cursor: pointer;
+}
+
+.login {
+  height: 48px;
+  text-transform: capitalize;
+  color: var(--text-primary);
+  background-color: var(--color-primary);
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  border-radius: 9px;
+  font-size: 18px;
+}
+.login:hover {
+  opacity: 0.8;
+}
+.or span {
+  text-align: center;
+}
+.or {
+  position: relative;
+}
+.or span::before {
+  content: '';
+  position: absolute;
+  width: calc(50% - 20px);
+  height: 1px;
+  left: 0;
+  top: 50%;
+  background-color: rgb(var(--border-secondary));
+}
+.or span::after {
+  content: '';
+  position: absolute;
+  width: calc(50% - 20px);
+  height: 1px;
+  right: 0;
+  top: 50%;
+  background-color: rgb(var(--border-secondary));
+}
+.register-link {
+  align-self: center;
+}
+input.ng-invalid.ng-touched {
+  border-color: #f84e2c;
+  border-width: 2px;
+  box-shadow: 0 0 0 2px #f84e2c56;
+}
+.not-valid-input {
+  display: flex;
+  flex-direction: row !important;
+  align-items: center;
+  color: #f84e2c;
+  gap: 5px !important;
+}
+.not-valid-input p {
+  font-size: 16px;
+}
+.not-valid-input svg {
+  width: 16px;
+  height: 16px;
+  align-self: flex-start;
+}
+@media (max-width: 400px) {
+  .container {
+    padding: 20px;
+  }
+  .link {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .container-login {
+    max-width: 500px;
+    width: 100%;
+  }
+  .container {
+    max-width: 500px;
+  }
+  .input-svg input {
+    padding: 10px;
+    padding-left: 44px;
+  }
+}

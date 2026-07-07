@@ -1,0 +1,24 @@
+.login-text-secondary {
+  color: var(--paragraph-secondary);
+  margin-bottom: 64px;
+}
+.login-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.login-header a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 64px;
+  height: 64px;
+  font-size: 44px;
+  border-radius: 50%;
+  color: #eee;
+  text-decoration: none;
+  background-color: var(--color-primary);
+  font-weight: 600;
+}

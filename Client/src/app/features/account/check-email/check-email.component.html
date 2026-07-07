@@ -1,0 +1,38 @@
+<app-header />
+<div class="page">
+  <div class="card">
+    <div class="icon-wrap">
+      <span class="icon-inner">✉</span>
+      <span class="badge">✓</span>
+    </div>
+
+    <h1 class="title">Check your email</h1>
+    <p class="subtitle">
+      We sent a verification link to your inbox. Click the link to activate your account.
+    </p>
+
+    <span class="email-pill">{{ userEmail() }}</span>
+
+    <div class="status-row">
+      <span class="dot"></span>
+      Email sent successfully
+    </div>
+
+    <hr class="divider" />
+
+    <p class="resend-row">
+      Didn't receive it?&nbsp;
+      <button type="button" class="text-[var(--color-primary)]!" (click)="resendEmail()">
+        Resend email
+      </button>
+    </p>
+
+    <button class="btn-back" type="button" (click)="backToLogin()">← Back to login</button>
+
+    <p class="hint">
+      Check your spam folder if you don't see it.<br />
+      Need help? <a routerLink="/support">Contact support</a>
+    </p>
+  </div>
+</div>
+<app-footer />

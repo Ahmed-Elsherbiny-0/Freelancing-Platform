@@ -1,0 +1,28 @@
+.lg-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 16px;
+  width: 100%;
+}
+@media (max-width: 767px) {
+  .lg-container {
+    max-width: 700px;
+    padding: 0 10px;
+  }
+}
+@media (max-width: 400px) {
+  .lg-container {
+    max-width: 400px;
+  }
+}
+@media (max-width: 200px) {
+  .lg-container {
+    max-width: 100px;
+  }
+}
+
+@media (min-width: 768px) {
+  .lg-container {
+    max-width: 1000;
+  }
+}
