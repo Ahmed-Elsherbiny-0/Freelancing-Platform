@@ -86,7 +86,7 @@ export class AuthService {
   register<T>(obj: T) {
     return this.httpClient.post<T>(this.baseUrl + 'auth/register', obj, {
       headers: {
-        origin: 'https://localhost:4200/verify-email',
+        origin: `${environment.apiUrl}/verify-email`,
       },
     });
   }
