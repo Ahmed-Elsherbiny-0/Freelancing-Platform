@@ -1,8 +1,8 @@
 <app-header />
 <section class="py-30 relative">
   <div class="lg-container text-[var(--text-primary)]">
-    <div class="flex gap-8 w-full">
-      <div class="w-[70%] bg-[var(--theme-bg)] h-fit rounded-2xl!">
+    <div class="flex gap-8 w-full layout">
+      <div class="w-[70%] bg-[var(--theme-bg)] rounded-2xl! layout-1">
         <div class="flex flex-col gap-4">
           <div
             class="p-6 pb-8 flex flex-col gap-3 rounded-2xl! border border-[var(--border-components)] bg-[var(--secondary-color)]"
@@ -85,9 +85,9 @@
             <div
               class="border border-[var(--border-components)] opacity-60 my-1 w-[90%] mx-auto"
             ></div>
-            <div class="flex justify-between">
+            <div class="flex justify-between box-1">
               <div
-                class="flex gap-3 rounded-2xl border border-[var(--border-components)] p-4 items-center justify-center basis-[32%]"
+                class="flex gap-3 rounded-2xl border border-[var(--border-components)] p-4 items-center justify-end basis-[32%]"
               >
                 <div
                   class="flex flex-col text-[var(--paragraph-secondary)] text-[12px] font-semibold items-end"
@@ -241,7 +241,7 @@
             <div class="flex flex-col gap-3">
               @for (item of offers(); track $index) {
                 <div class="flex flex-col gap-2 p-2 rounded-2xl">
-                  <div class="flex items-center justify-between">
+                  <div class="flex justify-between box-1">
                     <div class="flex gap-1">
                       <img [src]="item.pictureUrl" class="w-[40px] h-[40px] rounded-[50%]" />
                       <div>
@@ -300,9 +300,9 @@
                       </div>
                     </div>
                     <div
-                      class="flex gap-2 px-4 border border-[var(--border-components)] bg-[var(--theme-bg)] p-2 rounded-2xl text-[var(--paragraph-secondary)] items-center font-semibold"
+                      class="flex gap-2 px-4 justify-between border border-[var(--border-components)] bg-[var(--theme-bg)] p-2 rounded-2xl text-[var(--paragraph-secondary)] items-center font-semibold"
                     >
-                      <div class="flex gap-0.5 flex-col text-end text-[10px]">
+                      <div class="flex gap-0.5 flex-col text-end text-[10px] box-2 items-center">
                         <p class="text-[8px]">TIME</p>
                         <p>
                           <span class="text-[var(--text-primary)] font-bold text-[12px]">{{
@@ -335,9 +335,9 @@
                     </div>
 
                     <div
-                      class="flex gap-2 px-4 border border-[var(--border-components)] bg-[var(--theme-bg)] p-2 rounded-2xl text-[var(--paragraph-secondary)] items-center font-semibold"
+                      class="flex gap-2 px-4 border justify-between border-[var(--border-components)] bg-[var(--theme-bg)] p-2 rounded-2xl text-[var(--paragraph-secondary)] items-center font-semibold"
                     >
-                      <div class="flex gap-0.5 flex-col text-end text-[10px]">
+                      <div class="flex gap-0.5 flex-col text-end text-[10px] box-2 items-center">
                         <p class="text-[8px]">PRICE</p>
                         <p>
                           <span class="text-[var(--text-primary)] font-bold text-[12px]">{{
@@ -372,7 +372,7 @@
                     </div>
                   </div>
                   <div
-                    class="w-full min-h-[70px] border border-[var(--border-components)] bg-[var(--theme-bg)] rounded-2xl"
+                    class="w-full min-h-[70px] justify-between border border-[var(--border-components)] bg-[var(--theme-bg)] rounded-2xl"
                   >
                     <p class="p-3 text-[var(--paragraph-secondary)] font-medium">
                       {{ item.description }}
@@ -394,7 +394,7 @@
           </div>
         </div>
       </div>
-      <div class="flex flex-col w-[30%] gap-3">
+      <div class="flex flex-col w-[30%] gap-3 layout-2">
         <div
           class="bg-[var(--secondary-color)] border-[var(--border-components)] border rounded-2xl pb-5 p-4"
         >
@@ -457,11 +457,11 @@
           <div
             [class.hidden]="!visible()"
             [class.overlay]="visible()"
-            class="z-50 fixed inset-0 border border-[var(--border-components)]"
+            class="z-50 fixed inset-0 border border-[var(--border-components)] popout-1"
             #overlay
           >
             <form
-              class="w-[500px] bg-[var(--secondary-color)] mx-auto mt-[150px] rounded-2xl p-5 pt-7"
+              class="max-w-[500px] bg-[var(--secondary-color)] mx-auto mt-[150px] rounded-2xl p-5 pt-7"
               [formGroup]="form"
             >
               <div class="flex flex-col gap-4">

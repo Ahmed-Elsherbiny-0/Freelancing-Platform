@@ -13,6 +13,38 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
+  .layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 10px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .layout-1 {
+    width: auto;
+    margin: 0 auto;
+  }
+  .layout-2 {
+    width: 100%;
+    margin: 0 auto;
+  }
+  .popout-1 {
+    width: auto;
+    /* padding: 0 10px; */
+  }
+  .box-1 {
+    flex-direction: column;
+    gap: 20px;
+    align-content: flex-end;
+    width: 100%;
+  }
+  .box-2 span {
+    font-size: 18px;
+  }
+  .box-2 p {
+    font-size: 12px;
+  }
 }
 @media (max-width: 500px) {
   .cards {
@@ -79,7 +111,7 @@
   right: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.7);
 }
 .proposal-dialog {
   left: 50%;

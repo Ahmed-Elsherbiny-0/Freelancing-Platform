@@ -50,16 +50,18 @@
       <p class="font-medium description">
         {{ job.description }}
       </p>
-      <div class="flex justify-between">
-        @for (item of job.reqiuiredSkills; track $index) {
-          @if ($index < 3) {
-            <p
-              class="text-[var(--paragraph-secondary)] hover:text-[var(--text-primary)] transition-all duration-300 text-[12px] p-2 px-3 bg-[var(--theme-bg)] rounded-xl"
-            >
-              {{ item.toUpperCase() }}
-            </p>
+      <div class="min-h-[40px]">
+        <div class="flex justify-between">
+          @for (item of job.reqiuiredSkills; track $index) {
+            @if ($index < 3) {
+              <p
+                class="text-[var(--paragraph-secondary)] hover:text-[var(--text-primary)] transition-all duration-300 text-[12px] p-2 px-3 bg-[var(--theme-bg)] rounded-xl"
+              >
+                {{ item.toUpperCase() }}
+              </p>
+            }
           }
-        }
+        </div>
       </div>
       <div class="flex justify-between items-center">
         <div

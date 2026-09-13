@@ -8,11 +8,34 @@
   .lg-container {
     max-width: 700px;
     padding: 0 10px;
+    margin: 0 auto;
   }
   .cards {
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
+  .layout {
+    flex-direction: column;
+  }
+  .parent {
+    width: auto;
+    margin: 0 auto;
+  }
+  .parent-2 {
+    width: auto;
+    order: 2;
+    margin: 0 auto;
+  }
+  .copy-button {
+    margin-bottom: 20px;
+  }
+  /* .box-1 {
+    width: 100%;
+    justify-content: center;
+    display: flex;
+  }
+  .box-1 div {
+  } */
 }
 @media (max-width: 500px) {
   .cards {
