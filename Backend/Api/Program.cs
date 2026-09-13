@@ -21,7 +21,7 @@ try
 {
 	using var scope = app.Services.CreateScope();
 	var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-	await context.Database.ExecuteSqlRawAsync("DELETE FROM [Connections]");
+	//await context.Database.ExecuteSqlRawAsync("DELETE FROM [Connections]");
 	await context.Database.MigrateAsync();
     var presenceTracker = scope.ServiceProvider.GetRequiredService<IPresenceTracker>();
     await presenceTracker.ClearAllAsync();
