@@ -12,6 +12,7 @@ import { AuthService } from '../../../core/services/auth.service';
 import { SnackbarService } from '../../../core/services/snackbar.service';
 import { FileUploadEvent, FileUploadModule } from 'primeng/fileupload';
 import { Photo } from '../../../shared/models/photo';
+import { environment } from '../../../../environments/environment.development';
 
 @Component({
   selector: 'app-register',
@@ -41,6 +42,7 @@ export class RegisterComponent implements OnInit {
     phoneNumber: new FormControl('', [Validators.required, Validators.min(8)]),
     checkbox: new FormControl(false, [Validators.requiredTrue]),
   });
+  baseUrl = environment.apiUrl;
   private snackbar = inject(SnackbarService);
   private authService = inject(AuthService);
   private destoryRef = inject(DestroyRef);
@@ -50,6 +52,7 @@ export class RegisterComponent implements OnInit {
   userPhoto = signal<Photo | null>(null);
   countries: string[] = ['Egypt', 'Suddan', 'Syria'];
   private httpClient = inject(HttpClient);
+
   ngOnInit() {
     var sub = this.getCountries();
     this.destoryRef.onDestroy(() => sub.unsubscribe());
@@ -123,7 +126,7 @@ export class RegisterComponent implements OnInit {
   removeUserPhoto() {
     if (this.userPhoto()) {
       this.httpClient
-        .delete('https://localhost:7148/users/delete-photo-cloudinary', {
+        .delete(this.baseUrl + 'users/delete-photo-cloudinary', {
           params: { publicId: this.userPhoto()!.publicId },
         })
         .subscribe();
