@@ -42,7 +42,6 @@ export class RegisterComponent implements OnInit {
     phoneNumber: new FormControl('', [Validators.required, Validators.min(8)]),
     checkbox: new FormControl(false, [Validators.requiredTrue]),
   });
-  baseUrl = environment.apiUrl;
   private snackbar = inject(SnackbarService);
   private authService = inject(AuthService);
   private destoryRef = inject(DestroyRef);
@@ -52,7 +51,7 @@ export class RegisterComponent implements OnInit {
   userPhoto = signal<Photo | null>(null);
   countries: string[] = ['Egypt', 'Suddan', 'Syria'];
   private httpClient = inject(HttpClient);
-
+  baseUrl = environment.apiUrl;
   ngOnInit() {
     var sub = this.getCountries();
     this.destoryRef.onDestroy(() => sub.unsubscribe());
@@ -78,39 +77,37 @@ export class RegisterComponent implements OnInit {
   }
 
   onCreateAccount() {
-    let payload: any = {
-      email: this.form1.get('email')?.value,
-      password: this.form1.get('password')?.value,
-      firstName: this.form1.get('firstName')?.value,
-      lastName: this.form1.get('lastName')?.value,
-      phoneNumber: this.form2.get('phoneNumber')?.value,
-      country: this.form2.get('country')?.value,
-      type: this.userPostion(),
-    };
-
-    if (this.userPhoto()) {
-      payload.photo = {
-        PublicId: this.userPhoto()?.publicId,
-        url: this.userPhoto()?.url,
-      };
-    }
-
+    console.log('hihhih');
     if (this.form1.valid && this.form2.valid) {
-      this.authService.register(payload).subscribe({
-        next: () => {
-          this.router.navigate(['check-email'], {
-            state: {
-              email: this.form1.value.email,
-            },
-          });
-          this.snackbar.success('plz check Your email');
-          this.registerErrorMsg.set(null);
-          this.authService.logout();
-        },
-        error: (err: any) => {
-          this.registerErrorMsg.set((err.error.errors as string[]).join(' , '));
-        },
-      });
+      this.authService
+        .register({
+          email: this.form1.get('email')?.value,
+          password: this.form1.get('password')?.value,
+          firstName: this.form1.get('firstName')?.value,
+          lastName: this.form1.get('lastName')?.value,
+          phoneNumber: this.form2.get('phoneNumber')?.value,
+          country: this.form2.get('country')?.value,
+          photo: {
+            PublicId: this.userPhoto()?.publicId,
+            url: this.userPhoto()?.url,
+          },
+          type: this.userPostion(),
+        })
+        .subscribe({
+          next: () => {
+            this.router.navigate(['check-email'], {
+              state: {
+                email: this.form1.value.email,
+              },
+            });
+            this.snackbar.success('plz check Your email');
+            this.registerErrorMsg.set(null);
+            this.authService.logout();
+          },
+          error: (err: any) => {
+            this.registerErrorMsg.set((err.error.errors as string[]).join(' , '));
+          },
+        });
       return;
     }
     this.form1.markAsTouched();

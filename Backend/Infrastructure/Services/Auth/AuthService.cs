@@ -81,66 +81,84 @@ namespace Infrastructure.Services.Auth
         }
 
 
-        public async Task<Result>Register(RegisterRequestDto request, CancellationToken cancellationToken=default)
+        public async Task<Result> Register(RegisterRequestDto request, CancellationToken cancellationToken = default)
         {
-          var userisFind = await  _signInManager.UserManager.FindByEmailAsync(request.Email);
-            if (userisFind != null)
-            {
-                return Result.Failure(UserErrors.DuplicatedEmail);
-            }
-            var phone = await _context.Users.SingleOrDefaultAsync(x=>x.PhoneNumber==request.PhoneNumber);
-            if (phone != null) { 
-                return Result.Failure(UserErrors.DuplicatedPhone);
-            }
-           if (request.Photo == null)
-            {
-                request = request with { Photo = new PhotoDto(PhotoConstant.publicId, PhotoConstant.url) };
-            }
 
-  
-            var user= request.Adapt<ApplicationUser>();
-          
-             var result=   await _signInManager.UserManager.CreateAsync(user,request.Password);
-              var photoResult=  await _photoService.AddPhotoToUser(request.Photo.Adapt<Photo>(),user.Email);
             if (request.Type != "client" && request.Type != "worker")
             {
                 return Result.Failure(UserErrors.InvalidCredentials);
             }
-            if ( result.Succeeded&&photoResult.IsSuccess)
-            {
-                // todo add role and type
-                if (request.Type== "worker")
-                {
-                    var worker = new Worker
-                    {
-                        UserId = user.Id
-                    };
-                   await  _context.Workers.AddAsync(worker);
-                    await _context.SaveChangesAsync();  
-                }
-                if (request.Type == "client")
-                {
-                    var client = new Client
-                    {
-                        UserId = user.Id
-                    };
-                    await _context.Clients.AddAsync(client);
-                    await _context.SaveChangesAsync();
-                }
-                var code = await _signInManager.UserManager.GenerateEmailConfirmationTokenAsync(user);
 
+            var userIsFound = await _signInManager.UserManager.FindByEmailAsync(request.Email);
+            if (userIsFound != null)
+            {
+                return Result.Failure(UserErrors.DuplicatedEmail);
+            }
+
+            var phone = await _context.Users.SingleOrDefaultAsync(x => x.PhoneNumber == request.PhoneNumber, cancellationToken);
+            if (phone != null)
+            {
+                return Result.Failure(UserErrors.DuplicatedPhone);
+            }
+
+            if (request.Photo == null)
+            {
+                request = request with { Photo = new PhotoDto(PhotoConstant.publicId, PhotoConstant.url) };
+            }
+
+            var user = request.Adapt<ApplicationUser>();
+            using var transaction = await _context.Database.BeginTransactionAsync(cancellationToken);
+
+            try
+            {
+                var result = await _signInManager.UserManager.CreateAsync(user, request.Password);
+
+ 
+                if (!result.Succeeded)
+                {
+                    var identityError = result.Errors.First();
+                    await transaction.RollbackAsync(cancellationToken);
+                    return Result.Failure(new Error(identityError.Code, identityError.Description, StatusCodes.Status400BadRequest));
+                }
+
+                var photoResult = await _photoService.AddPhotoToUser(request.Photo!.Adapt<Photo>(), user.Email);
+                if (!photoResult.IsSuccess)
+                {
+                    await transaction.RollbackAsync(cancellationToken);
+  
+                    await _signInManager.UserManager.DeleteAsync(user);
+                    return Result.Failure<PhotoDto>(photoResult.Error); 
+                }
+                if (request.Type == "worker")
+                {
+                    var worker = new Worker { UserId = user.Id };
+                    await _context.Workers.AddAsync(worker, cancellationToken);
+                }
+                else 
+                {
+                    var client = new Client { UserId = user.Id };
+                    await _context.Clients.AddAsync(client, cancellationToken);
+                }
+
+                await _context.SaveChangesAsync(cancellationToken);
+
+                var code = await _signInManager.UserManager.GenerateEmailConfirmationTokenAsync(user);
                 code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
 
                 _logger.LogInformation("Confirmation code: {code}", code);
 
                 await SendConfirmationEmail(user, code);
+
+                await transaction.CommitAsync(cancellationToken);
+
                 return Result.Success();
             }
-
-            var error = result.Errors.First();
-
-            return Result.Failure(new Error(error.Code, error.Description, StatusCodes.Status400BadRequest));
-
+            catch
+            {
+               
+                await transaction.RollbackAsync(cancellationToken);
+                throw;
+            }
         }
 
 
