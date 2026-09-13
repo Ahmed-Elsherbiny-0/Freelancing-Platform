@@ -50,7 +50,7 @@ namespace Api
             {
                 x.AddPolicy("cors", y =>
                 {
-                    y.AllowCredentials().AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200");
+                    y.AllowCredentials().AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200", "https://freelancing-platform-iota.vercel.app/");
                 });
             }); 
 
