@@ -2,7 +2,19 @@ import { inject, Injectable, signal } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../../shared/models/user';
-import { catchError, finalize, firstValueFrom, map, Observable, of, shareReplay, tap } from 'rxjs';
+import {
+  catchError,
+  finalize,
+  firstValueFrom,
+  from,
+  map,
+  Observable,
+  of,
+  shareReplay,
+  switchMap,
+  tap,
+  throwError,
+} from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { Mutex } from '../../shared/models/mutex';
@@ -29,12 +41,11 @@ export class AuthService {
 
   login(email: string, password: string) {
     return this.httpClient.post<User>(this.baseUrl + 'auth/login', { email, password }).pipe(
-      tap(async (x) => {
+      tap((x) => {
         this.currentUser.set(x);
-        if (this.currentUser() != null)
-          await this.presenceService.createHubConnection(this.currentUser()!);
         localStorage.setItem('refreshToken', x.refreshToken);
       }),
+      switchMap((x) => from(this.presenceService.createHubConnection(x)).pipe(map(() => x))),
     );
   }
 
@@ -53,7 +64,8 @@ export class AuthService {
             localStorage.setItem('refreshToken', x.refreshToken);
           }),
           catchError((err) => {
-            return this.logout(true);
+            this.logout(true);
+            return throwError(() => err);
           }),
           shareReplay(1),
           finalize(() => {
