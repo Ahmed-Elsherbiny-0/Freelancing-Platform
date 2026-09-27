@@ -69,7 +69,7 @@ namespace Infrastructure.Services.Auth
                 {
                     HttpOnly = true,
                     Secure = true,
-                    SameSite = SameSiteMode.Strict,
+                    SameSite = SameSiteMode.None,
                     Expires = DateTime.UtcNow.AddYears(expire)
                 };
                 _httpContextAccessor.HttpContext?.Response.Cookies.Append("access_token", token, accessTokenCookieOptions);
@@ -210,7 +210,7 @@ namespace Infrastructure.Services.Auth
             {
                 HttpOnly = true,
                 Secure = true,
-                SameSite = SameSiteMode.Strict,
+                SameSite = SameSiteMode.None,
                 Expires = DateTime.UtcNow.AddSeconds(expiresIn)
             };
             _httpContextAccessor.HttpContext?.Response.Cookies.Append("access_token", token, accessTokenCookieOptions);
