@@ -13,6 +13,7 @@ import { AuthService } from '../../../core/services/auth.service';
 import { Router, RouterLink } from '@angular/router';
 import { SnackbarService } from '../../../core/services/snackbar.service';
 import { ToastService } from '../../../core/services/toast.service';
+import { getErrorCodes, getErrorMessages } from '../../../shared/models/errormessage';
 @Component({
   selector: 'app-login',
   imports: [HeaderComponent, FooterComponent, ReactiveFormsModule, FormHeaderComponent, RouterLink],
@@ -25,7 +26,7 @@ export class LoginComponent {
   toast = inject(ToastService);
   loginErrorMsg = signal<string | null>(null);
   form = new FormGroup({
-    email: new FormControl('', [Validators.required, validEmailOrPhone]),
+    email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(6)]),
   });
 
@@ -39,25 +40,27 @@ export class LoginComponent {
           this.toast.success('Login Successifully');
         },
         error: (err: any) => {
-          this.loginErrorMsg.set((err.error.errors as string[]).join(' , '));
+          if (getErrorCodes(err)[0] === 'User.EmailNotConfirmed') return;
+
+          this.loginErrorMsg.set(getErrorMessages(err).join(' , '));
         },
       });
     }
   }
 }
 
-function validEmailOrPhone(control: AbstractControl) {
-  let isPhone = control.value.length >= 9;
-  for (const ch of control.value) {
-    if (ch >= '0' && ch <= '9') continue;
-    else {
-      isPhone = false;
-      break;
-    }
-  }
+// function validEmailOrPhone(control: AbstractControl) {
+//   let isPhone = control.value.length >= 9;
+//   for (const ch of control.value) {
+//     if (ch >= '0' && ch <= '9') continue;
+//     else {
+//       isPhone = false;
+//       break;
+//     }
+//   }
 
-  if ((control.value.includes('.com') && control.value.includes('@')) || isPhone) {
-    return null;
-  }
-  return { valid: false };
-}
+//   if ((control.value.includes('.com') && control.value.includes('@')) || isPhone) {
+//     return null;
+//   }
+//   return { valid: false };
+// }

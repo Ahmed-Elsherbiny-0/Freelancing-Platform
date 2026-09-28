@@ -1,43 +1,66 @@
-import {
-  HttpErrorResponse,
-  HttpEvent,
-  HttpHandler,
-  HttpInterceptorFn,
-  HttpRequest,
-} from '@angular/common/http';
+import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { catchError, Observable, throwError } from 'rxjs';
-import { SnackbarService } from '../services/snackbar.service';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
-import { ToastService } from '../services/toast.service';
+import { catchError, throwError } from 'rxjs';
+import { SnackbarService } from '../services/snackbar.service'; // adjust path
+import { ToastService } from '../services/toast.service'; // adjust path
+import { getErrorCodes, getErrorMessages } from '../../shared/models/errormessage';
 
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
-  const snackbar = inject(SnackbarService);
   const toast = inject(ToastService);
-
   const router = inject(Router);
+
   return next(req).pipe(
     catchError((err: HttpErrorResponse) => {
-      if (err.status === 400) {
-      } else if (err.status === 401) {
-        console.log(err.error.errors[0]);
-        if (err.error.errors[0] == 'User.EmailNotConfirmed') {
-          router.navigateByUrl('/resend-confirm-email');
-          toast.normal('your email not conifimed. plz confirm your email');
-        } else if (err.error.errors[0] == 'InvalidToken') {
-          console.log('hiihiihi');
-        } else {
-          // router.navigateByUrl('/login');
-        }
-      } else if (err.status === 403) {
-        // snackbar.error('Access denied');
-      } else if (err.status === 404) {
-        // router.navigateByUrl('/not-found');
-      } else if (err.status === 500) {
-        // router.navigateByUrl('/server-error', {
-        //   state: { error: err.error },
-        // });
+      const codes = getErrorCodes(err);
+      const firstCode = codes[0];
+      const message = getErrorMessages(err).join(' , ');
+
+      switch (err.status) {
+        // Server unreachable / CORS / offline
+        case 0:
+          toast.error(message);
+          break;
+
+        // Validation errors: let the component/form show them
+        case 400:
+          break;
+
+        case 401:
+          if (firstCode === 'User.EmailNotConfirmed') {
+            router.navigateByUrl('/resend-confirm-email');
+            toast.normal(message);
+          } else if (
+            firstCode === 'User.InvalidJwtToken' ||
+            firstCode === 'User.InvalidRefreshToken'
+          ) {
+            // session problem -> go to login
+            router.navigateByUrl('/login');
+            toast.error(message);
+          }
+          // Other 401s (wrong password, locked, disabled...) are shown
+          // by the login component using getErrorMessages(err)
+          break;
+
+        case 403:
+          toast.error(message);
+          break;
+
+        case 404:
+          // Only redirect for page/data not found, not for "User not found" forms
+          // router.navigateByUrl('/not-found');
+          break;
+
+        case 409:
+          // Duplicated email/phone: let the form show it
+          break;
+
+        default:
+          if (err.status >= 500) {
+            toast.error(message);
+            // router.navigateByUrl('/server-error', { state: { error: err.error } });
+          }
+          break;
       }
 
       return throwError(() => err);
