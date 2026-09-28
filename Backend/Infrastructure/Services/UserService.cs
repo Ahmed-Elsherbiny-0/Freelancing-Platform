@@ -1,18 +1,21 @@
-﻿using Application.Dtos;
-using Domain.Interfaces;
+﻿using Application.Comman;
+using Application.Dtos;
 using Application.Interfaces;
+using Domain.Comman;
+using Domain.Entities;
+using Domain.Entities.ChatingEntities;
+using Domain.Entities.UserEntities;
+using Domain.Interfaces;
 using Domain.Specifications;
 using Infrastructure.Data;
+using Mapster;
 using Microsoft.EntityFrameworkCore;
+using Org.BouncyCastle.Ocsp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Domain.Entities.ChatingEntities;
-using Domain.Entities.UserEntities;
-using Domain.Comman;
-using Mapster;
 
 namespace Infrastructure.Services
 {
@@ -73,10 +76,24 @@ WHERE rm.RowNum = 1
 
         }
 
-        public async Task<Result> UpdateUserInfo(UserInfoRequestDto request,string userId)
+        public async Task<Result> UpdateUserInfo(UserInfoRequestDto request, string userId)
         {
-            var user = await userrepo.GetEntityWithspec( new UserSpecification(userId,0));
-            request.Adapt(user);
+            var user = await userrepo.GetEntityWithspec(new UserSpecification(userId, 0));
+            if (user is null)
+                return Result.Failure(UserErrors.NotFoundedUser);
+
+            request.Adapt(user); 
+
+           
+            if (user.Worker is null)
+                user.Worker = new Worker { UserId = userId };
+
+            if (request.Description is not null)
+                user.Worker.Description = request.Description;
+
+            if (request.Skills is not null)
+                user.Worker.Skills = request.Skills.Select(name => new Skill { Name = name }).ToList();
+
             await userrepo.SaveChangesAsync();
             return Result.Success();
         }

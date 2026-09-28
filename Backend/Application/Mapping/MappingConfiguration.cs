@@ -23,8 +23,18 @@ namespace Application.Mapping
             config.NewConfig<JobRequestDto, Job>()
                .Map(x => x.ReqiuiredSkills, y => y.RequiredSkills == null ? new List<Skill>() : y.RequiredSkills.Select(x => new Skill { Name = x }).ToList());
 
-            config.NewConfig<ApplicationUser, UserInfoRequestDto>().Map(x => x.Description, y => y.Worker.Description)
-                .Map(x=>x.Skills,y=>y.Worker.Skills.Select(x=>x.Name).ToList());
+            // MappingConfiguration.cs
+            config.NewConfig<ApplicationUser, UserInfoRequestDto>()
+                .Map(x => x.Description, y => y.Worker != null ? y.Worker.Description : null)
+                .Map(x => x.Skills, y => y.Worker != null && y.Worker.Skills != null
+                    ? y.Worker.Skills.Select(s => s.Name).ToList()
+                    : new List<string>());
+
+            // NEW: the reverse direction that was missing entirely
+            config.NewConfig<UserInfoRequestDto, ApplicationUser>()
+                .IgnoreNullValues(true)
+                .Ignore(x => x.Worker)   // Worker handled manually — Skills can't auto-map name->entity
+                .Ignore(x => x.Client);
         }
     }
 }
