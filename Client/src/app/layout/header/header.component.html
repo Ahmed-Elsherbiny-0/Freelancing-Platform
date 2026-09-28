@@ -384,9 +384,9 @@
   <ul
     class="text-[var(--text-primary)] flex flex-col justify-center items-center gap-6 transition-[.3s] mb-6!"
   >
-    <li><a routerLink="/home" class="hover:text-[var(--color-primary)]">Home</a></li>
-    <li><a routerLink="/jobs" class="hover:text-[var(--color-primary)]">Jobs</a></li>
-    <li><a routerLink="/freelancers" class="hover:text-[var(--color-primary)]">Freelancers</a></li>
+    <li><a routerLink="/" class="hover:text-[var(--color-primary)]">Home</a></li>
+    <li><a routerLink="/announcements" class="hover:text-[var(--color-primary)]">Jobs</a></li>
+    <li><a routerLink="/workers" class="hover:text-[var(--color-primary)]">Freelancers</a></li>
     <li><a routerLink="/requests" class="hover:text-[var(--color-primary)]">Requests</a></li>
     <li><a routerLink="/contact" class="hover:text-[var(--color-primary)]">Contact Us</a></li>
   </ul>
@@ -395,6 +395,7 @@
     <button
       class="login-button cursor-pointer p-1.5 px-3 rounded-lg border border-solid border-[1px] border-[rgba(255,255,255,.2)] text-[var(--color-primary)] flex justify-center items-center"
       (click)="onClickLogin()"
+      routerLink="/login"
     >
       Login
       <span class="w-[30px] flex justify-center items-center">
@@ -419,7 +420,7 @@
     </button>
     <button
       class="login-button cursor-pointer p-1.5 px-3 rounded-lg bg-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:opacity-80 font-medium"
-      routerLink="/register"
+      routerLink="/signup"
     >
       Register
     </button>
