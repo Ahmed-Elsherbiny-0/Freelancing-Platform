@@ -32,7 +32,7 @@
               </svg>
             </span>
           </div>
-          @if (form.touched && form.controls.email.invalid) {
+          @if (form.controls.email.touched && form.controls.email.invalid) {
             <div class="not-valid-input">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -80,7 +80,7 @@
               </svg>
             </span>
           </div>
-          @if (form.touched && form.controls.password.touched && form.controls.password.invalid) {
+          @if (form.controls.password.touched && form.controls.password.invalid) {
             <div class="not-valid-input">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
