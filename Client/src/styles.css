@@ -10,7 +10,7 @@
 html {
   font-style: sans-serif;
 }
-:root {
+.dark {
   --color-primary: #1eaaad;
   --theme-bg: #020617;
   --title-secondary: #1eaaad;
@@ -21,13 +21,13 @@ html {
   --border-components: #272f40;
   --stars-background: #262629;
 }
-.dark {
+:root {
   --theme-bg: #f8fafc;
   --text-primary: #000;
   --secondary-color: #feffff;
   --border-components: #e2e8f0;
   --stars-background: #fff8e9;
-  --main-icons: #feffff;
+  --main-icons: #eee;
 }
 * {
   box-sizing: border-box;

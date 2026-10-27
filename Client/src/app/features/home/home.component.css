@@ -118,7 +118,7 @@
   left: 0;
   width: 24px;
   height: 24px;
-  color: #fff;
+  color: var(--text-primary);
   background-color: var(--main-icons);
   font-size: 10px;
   border-radius: 14px;

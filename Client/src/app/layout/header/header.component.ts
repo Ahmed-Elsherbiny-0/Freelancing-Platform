@@ -22,7 +22,7 @@ import { PresenceService } from '../../core/services/presence.service';
 })
 export class HeaderComponent {
   router = inject(Router);
-  theme = signal<boolean>(false);
+  theme = signal<boolean>(true);
   menuOpen = signal(false);
   authService = inject(AuthService);
   profileDialog = signal<boolean>(false);
